@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D43D037C-82B0-49CB-BE82-050A4A99D501}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>showpic</RootNamespace>
+    <AssemblyName>showpic</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>发布\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="frmequal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmequal.Designer.cs">
+      <DependentUpon>frmequal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmlocal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmlocal.Designer.cs">
+      <DependentUpon>frmlocal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmmain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmmain.Designer.cs">
+      <DependentUpon>frmmain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmmatch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmmatch.Designer.cs">
+      <DependentUpon>frmmatch.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmmeanfilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmmeanfilter.Designer.cs">
+      <DependentUpon>frmmeanfilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmsamplequan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmsamplequan.Designer.cs">
+      <DependentUpon>frmsamplequan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmzoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmzoom.Designer.cs">
+      <DependentUpon>frmzoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmgraylevel1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmgraylevel1.Designer.cs">
+      <DependentUpon>frmgraylevel1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmgraylevel2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmgraylevel2.Designer.cs">
+      <DependentUpon>frmgraylevel2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmhistogram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmhistogram.Designer.cs">
+      <DependentUpon>frmhistogram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmgrayhistogram.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmgrayhistogram.Designer.cs">
+      <DependentUpon>frmgrayhistogram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmequal.resx">
+      <DependentUpon>frmequal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmlocal.resx">
+      <DependentUpon>frmlocal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmmain.resx">
+      <DependentUpon>frmmain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmmatch.resx">
+      <DependentUpon>frmmatch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmmeanfilter.resx">
+      <DependentUpon>frmmeanfilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmsamplequan.resx">
+      <DependentUpon>frmsamplequan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmzoom.resx">
+      <DependentUpon>frmzoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmgraylevel1.resx">
+      <DependentUpon>frmgraylevel1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmgraylevel2.resx">
+      <DependentUpon>frmgraylevel2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmhistogram.resx">
+      <DependentUpon>frmhistogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmgrayhistogram.resx">
+      <DependentUpon>frmgrayhistogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
