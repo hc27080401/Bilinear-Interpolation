@@ -1,0 +1,19 @@
+if (bitmap != null)
+{
+    newbitmap = bitmap.Clone() as Bitmap;
+    Rectangle rect = new Rectangle(0, 0, newbitmap.Width, newbitmap.Height);
+    System.Drawing.Imaging.BitmapData bmpdata = newbitmap.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadWrite, newbitmap.PixelFormat);
+    IntPtr ptr = bmpdata.Scan0;
+    int bytes = newbitmap.Width * newbitmap.Height * 3;
+    byte[] rgbvalues = new byte[bytes];
+    System.Runtime.InteropServices.Marshal.Copy(ptr, rgbvalues, 0, bytes);
+    double colortemp = 0;
+    for (int i = 0; i < rgbvalues.Length; i += 3)
+    {
+        colortemp = rgbvalues[i + 2] * 0.299 + rgbvalues[i + 1] * 0.587 + rgbvalues[i] * 0.114;
+        rgbvalues[i] = rgbvalues[i + 1] = rgbvalues[i + 2] = (byte)colortemp;
+    }
+    System.Runtime.InteropServices.Marshal.Copy(rgbvalues, 0, ptr, bytes);
+    newbitmap.UnlockBits(bmpdata);
+    pictureBox1.Image = newbitmap.Clone() as Image;
+}

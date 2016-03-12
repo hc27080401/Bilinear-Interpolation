@@ -1,0 +1,72 @@
+  private void btnstart_Click(object sender, EventArgs e)
+        {
+            if (oribitmap == null) { MessageBox.Show("«Îœ»º”‘ÿÕº∆¨", "≥ˆ¥Ì", MessageBoxButtons.OK, MessageBoxIcon.Warning); return; }
+            double k1 = Convert.ToDouble(txtn.Text); //hengxiang
+            double k2 = Convert.ToDouble(txtm.Text);  //zongxiang            
+            int h = oribitmap.Height, w = oribitmap.Width;           
+            int hh = (int)(k2 * h), ww = (int)(k1 * w);
+            bitmap = new Bitmap(ww, hh);
+            int[,] p=new int[4,4];
+            double[, ] a = new double[4, 4];
+            int[] pixel = new int[3];
+            int[,,] oripixel=new int[h,w,3];
+            for (int x=0;x<h;x++)
+                for (int y=0;y<w;y++)
+                {
+                    oripixel[x,y,0]=oribitmap.GetPixel(y,x).R;
+                    oripixel[x,y,1]=oribitmap.GetPixel(y,x).G;
+                    oripixel[x, y, 2] = oribitmap.GetPixel(y, x).B;
+                }
+            for (int x = 0; x < hh; x++)
+            {
+                int tx = (int)(x / k2);
+                double px = x / k2;
+                double qx = px - tx;
+                double[] rx = new double[4];
+                for (int u=1;u<4;u++) rx[u]=Math.Pow(qx,u);
+                for (int y = 0; y < ww; y++)
+                {                   
+                    int ty = (int)(y / k1);
+                    double py = y / k1;
+                    double qy = py - ty;
+                    double[] ry = new double[4];
+                    for (int u = 1; u < 4; u++) ry[u] = Math.Pow(qy, u);
+                    for (int id = 0; id < 3; id++)
+                    {
+                        for (int i = -1; i <= 2; i++)
+                            for (int j = -1; j <= 2; j++)
+                            {
+                                int xx = tx + i;
+                                if (xx < 0) xx = 0; if (xx >= h) xx = h - 1;
+                                int yy = ty + j;
+                                if (yy < 0) yy = 0; if (yy >= w) yy = w - 1;
+                                if (id == 0) p[i + 1, j + 1] = oripixel[xx, yy, 0];
+                                else if (id == 1) p[i + 1, j + 1] = oripixel[xx, yy, 1];
+                                else p[i + 1, j + 1] = oripixel[xx, yy, 2];
+                            }
+                        a[0, 0] = 1.00 * p[1, 1];
+                        a[0, 1] = -0.50 * p[1, 0] + 0.50 * p[1, 2];
+                        a[0, 2] = 1.00 * p[1, 0] - 2.50 * p[1, 1] + 2.00 * p[1, 2] - 0.50 * p[1, 3];
+                        a[0, 3] = -0.50 * p[1, 0] + 1.50 * p[1, 1] - 1.50 * p[1, 2] + 0.50 * p[1, 3];
+                        a[1, 0] = -0.50 * p[0, 1] + 0.50 * p[2, 1];
+                        a[1, 1] = 0.25 * p[0, 0] - 0.25 * p[0, 2] - 0.25 * p[2, 0] + 0.25 * p[2, 2];
+                        a[1, 2] = -0.50 * p[0, 0] + 1.25 * p[0, 1] - 1.00 * p[0, 2] + 0.25 * p[0, 3] + 0.50 * p[2, 0] - 1.25 * p[2, 1] + 1.00 * p[2, 2] - 0.25 * p[2, 3];
+                        a[1, 3] = 0.25 * p[0, 0] - 0.75 * p[0, 1] + 0.75 * p[0, 2] - 0.25 * p[0, 3] - 0.25 * p[2, 0] + 0.75 * p[2, 1] - 0.75 * p[2, 2] + 0.25 * p[2, 3];
+                        a[2, 0] = 1.00 * p[0, 1] - 2.50 * p[1, 1] + 2.00 * p[2, 1] - 0.50 * p[3, 1];
+                        a[2, 1] = -0.50 * p[0, 0] + 0.50 * p[0, 2] + 1.25 * p[1, 0] - 1.25 * p[1, 2] - 1.00 * p[2, 0] + 1.00 * p[2, 2] + 0.25 * p[3, 0] - 0.25 * p[3, 2];
+                        a[2, 2] = 1.00 * p[0, 0] - 2.50 * p[0, 1] + 2.00 * p[0, 2] - 0.50 * p[0, 3] - 2.50 * p[1, 0] + 6.25 * p[1, 1] - 5.00 * p[1, 2] + 1.25 * p[1, 3] + 2.00 * p[2, 0] - 5.00 * p[2, 1] + 4.00 * p[2, 2] - 1.00 * p[2, 3] - 0.50 * p[3, 0] + 1.25 * p[3, 1] - 1.00 * p[3, 2] + 0.25 * p[3, 3];
+                        a[2, 3] = -0.50 * p[0, 0] + 1.50 * p[0, 1] - 1.50 * p[0, 2] + 0.50 * p[0, 3] + 1.25 * p[1, 0] - 3.75 * p[1, 1] + 3.75 * p[1, 2] - 1.25 * p[1, 3] - 1.00 * p[2, 0] + 3.00 * p[2, 1] - 3.00 * p[2, 2] + 1.00 * p[2, 3] + 0.25 * p[3, 0] - 0.75 * p[3, 1] + 0.75 * p[3, 2] - 0.25 * p[3, 3];
+                        a[3, 0] = -0.50 * p[0, 1] + 1.50 * p[1, 1] - 1.50 * p[2, 1] + 0.50 * p[3, 1];
+                        a[3, 1] = 0.25 * p[0, 0] - 0.25 * p[0, 2] - 0.75 * p[1, 0] + 0.75 * p[1, 2] + 0.75 * p[2, 0] - 0.75 * p[2, 2] - 0.25 * p[3, 0] + 0.25 * p[3, 2];
+                        a[3, 2] = -0.50 * p[0, 0] + 1.25 * p[0, 1] - 1.00 * p[0, 2] + 0.25 * p[0, 3] + 1.50 * p[1, 0] - 3.75 * p[1, 1] + 3.00 * p[1, 2] - 0.75 * p[1, 3] - 1.50 * p[2, 0] + 3.75 * p[2, 1] - 3.00 * p[2, 2] + 0.75 * p[2, 3] + 0.50 * p[3, 0] - 1.25 * p[3, 1] + 1.00 * p[3, 2] - 0.25 * p[3, 3];
+                        a[3, 3] = 0.25 * p[0, 0] - 0.75 * p[0, 1] + 0.75 * p[0, 2] - 0.25 * p[0, 3] - 0.75 * p[1, 0] + 2.25 * p[1, 1] - 2.25 * p[1, 2] + 0.75 * p[1, 3] + 0.75 * p[2, 0] - 2.25 * p[2, 1] + 2.25 * p[2, 2] - 0.75 * p[2, 3] - 0.25 * p[3, 0] + 0.75 * p[3, 1] - 0.75 * p[3, 2] + 0.25 * p[3, 3];
+                        pixel[id] = getvalue(a[0, 0] + a[0, 1] *ry[1] + a[0, 2] * ry[2] + a[0, 3] * ry[3] +
+                                           (a[1, 0] + a[1, 1] * ry[1] + a[1, 2] * ry[2] + a[1, 3] * ry[3]) * rx[1]
+                                           + (a[2, 0] + a[2, 1] * ry[1] + a[2, 2] * ry[2] + a[2, 3] * ry[3]) * rx[2]
+                                           + (a[3, 0] + a[3, 1] * ry[1] + a[3, 2] * ry[2] + a[3, 3] * ry[3]) * rx[3]);
+                    }
+                    bitmap.SetPixel(y, x, Color.FromArgb(pixel[0], pixel[1], pixel[2]));                                   
+                }
+            }
+            pictureBox2.Image = bitmap;
+        }
